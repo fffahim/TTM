@@ -19,8 +19,8 @@
       <p class="subtitle" >
         Happy Travel with <strong style="color: #fb8f1d;">Morey!</strong>
       </p>
-
-      <div class="box">
+      <form action="/register" method='POST'>
+        <div class="box">
         <div class="field">
             <p class="control">
               <input class="input" type="username" placeholder="Username" name="username">
@@ -48,14 +48,15 @@
               </div>
             <div class="field">
               <p class="control">
-                <button class="button" style="color: #ffffff; background-color: #fb8f1d;">
+                <button type="submit" class="button" style="color: #ffffff; background-color: #fb8f1d;">
                   Register
                 </button>
               </p>
             </div>
-            <p>Already Have an Account? <a href="login.html">Login</a></p>
+            <p>Already Have an Account? <a href="/login">Login</a></p>
         </div>
-      </div>
+        </div>
+      </form>
     </div>
   </section>
   </body>

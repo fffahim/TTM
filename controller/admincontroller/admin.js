@@ -2,12 +2,19 @@ const express = require('express')
 const adminModel = require.main.require('./models/adminModel')
 const router = express.Router()
 const {check,validationResult}=require('express-validator');
+router.get('/',(req,res)=>{
+	if(req.cookies['username']!=null)
+	{
+		res.render('admin')
+	}
+	else res.redirect('/login')
+});
 router.get('/:tablename',(req,res)=>{
-	if(req.cookie['username']!=NULL)
+	if(req.cookies['username']!= null)
 	{
 		var data = req.params.tablename;
 		adminModel.getAll(data,(results)=>{
-			res.send(results)
+			res.render('test',{'result':results})
 		})
 	}
 	else 
@@ -16,7 +23,7 @@ router.get('/:tablename',(req,res)=>{
 	}
 });
 router.get('/delete/:id/:table',(res,req)=>{
-	if(req.cookie['username']!=NULL)
+	if(req.cookies['username']!= null)
 	{
 		var id = req.params.id;
 		var table = req.params.table

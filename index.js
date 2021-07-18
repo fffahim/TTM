@@ -8,6 +8,7 @@ const login 		= require('./controller/login');
 const logout 		= require('./controller/logout');
 const register = require('./controller/registration');
 const adminhome			= require('./controller/admincontroller/admin')
+const customer = require('./controller/customercontroller/ccashboard')
 const app 			= express();
 const { check, validationResult } = require('express-validator');
 app.use('/static', express.static('static'));
@@ -25,6 +26,7 @@ app.use('/login', login);
 app.use('/register',register)
 app.use('/logout', logout);
 app.use('/admin',adminhome);
+app.use('/customer',customer);
 app.get('/', (req, res)=>{
 	res.render('index');	
 });

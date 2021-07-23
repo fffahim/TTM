@@ -31,5 +31,23 @@ module.exports = {
 		db.execute(sql,function(status){
 			callback(status)
 		});
+	},
+	hotelsearch:function(region,price1,price2,callback){
+		
+		if(region=='')
+		{
+			var sql = " select * from hotel_info where hotel_price >= "+price1+" and hotel_price <= "+price2+";"
+			console.log(sql);
+			db.getResults(sql,function(results){
+				callback(results)
+			})
+		}
+		else
+		{
+			var sql = " select * from hotel_info where hotel_region = '"+region+"' and hotel_price >= "+price1+" and hotel_price <= "+price2+";"
+			db.getResults(sql,function(results){
+				callback(results)
+			})
+		}
 	}
 }

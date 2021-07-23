@@ -9,6 +9,8 @@ const logout 		= require('./controller/logout');
 const register = require('./controller/registration');
 const adminhome			= require('./controller/admincontroller/admin')
 const customer = require('./controller/customercontroller/ccashboard')
+const hotels = require('./controller/hotels')
+const home = require('./controller/home')
 const app 			= express();
 const { check, validationResult } = require('express-validator');
 app.use('/static', express.static('static'));
@@ -27,9 +29,11 @@ app.use('/register',register)
 app.use('/logout', logout);
 app.use('/admin',adminhome);
 app.use('/customer',customer);
-app.get('/', (req, res)=>{
-	res.render('index');	
-});
+app.use('/hotels', hotels);
+app.use('/', home);
+// app.get('/', (req, res)=>{
+// 	res.redirect('/home');	
+// });
 app.listen(3000, (error)=>{
 	console.log('express server started at 3000...');
 });

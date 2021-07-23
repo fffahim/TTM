@@ -6,9 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tour and Travel</title>
-    <link rel="icon" type="image/png" href="/static/assets/img/logo.svg">
+    <link rel="icon" type="image/png" href="assets/img/logo.svg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="/static/assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
     <div class="container">
         <nav>
             <div class="nav-logo">
-                <img src="/static/assets/img/logo.svg" alt="">
+                <img src="assets/img/logo.svg" alt="">
             </div>
             <div class="nav-right">
                 <div class="nav-close-icon"></div>
@@ -26,7 +26,7 @@
                         <a href="#" class="nav-link active">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/hotels" class="nav-link">Hotels</a>
+                        <a href="hotels.html" class="nav-link">Hotels</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Transport</a>
@@ -36,8 +36,8 @@
                     </li>
                 </ul>
                 <div class="nav-form">
-                    <a href="/login" class="btn btn-login">Login</a>
-                    <a href="/register" class="btn btn-register">Register</a>
+                    <a href="login.html" class="btn btn-login">Login</a>
+                    <a href="register.html" class="btn btn-register">Register</a>
                 </div>
             </div>
             <div class="hamburger-menu-wrap">
@@ -59,85 +59,81 @@
             <div class="hero-form">
                 <h1 class="hero-title">Explore and Travel</h1>
                 <h4 class="hero-subtitle">Hotel finder</h4>
-                <form action="/hotels" method="POST">
+                <form >
                     <div class="form-groups">
-                        <!-- <div class="form-control">
-                            <div class="custom-select-wrapper">
-                               <div class="custom-select" >
-                                  <div class="custom-select__trigger">
-                                     <span>Location</span>
-                                     <div class="arrow"><</div>
-                                  </div>
-                                  <div class="custom-options"  name="hotel_name">
-                                     <span class="custom-option selected" value="ppp">Location</span>
-                                     {% for hotel in regions %}
-                                     <option class="custom-option" value="{{ hotel }}">{{ hotel }}</option>
-                                     {% endfor %}
-                                  </div>
-                               </div>
-                            </div>
-                         </div> -->
                         <div class="form-control">
-                            <div class="select is-large">
-                                <select name="hotel_name">
-                                  <option value="">Location</option>
-                                  {% for hotel in regions %}
-                                        <option value="{{ hotel }}">{{ hotel }}</option>
-                                    {% endfor %}
-                                </select>
-                              </div>
-        
-                              &nbsp;&nbsp;&nbsp;
-        
-                              <div class="select is-large">
-                                <select name="hotel_price">
-                                  <option value="0 to 999999999">Price Range</option>
-                                  <option  value="0 to 250">Below RM 250</option>
-                                    <option  value="250 to 350">RM 250 to RM 350</option>
-                                    <option  value="350 to 400">RM 350 to RM 400</option>
-                                    <option  value="400 to 999999999">Above RM 400</option>
-                                        
-                                </select>
+                            <div class="custom-select-wrapper">
+                                <div class="custom-select">
+                                    <div class="custom-select__trigger"><span>Location</span>
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="custom-options">
+                                        <span class="custom-option selected" data-value="">Location</span>
+                                        <span class="custom-option" data-value="paris">Paris</span>
+                                        <span class="custom-option" data-value="istanbul">Istanbul</span>
+                                        <span class="custom-option" data-value="newyork">Newyork</span>
+                                        <span class="custom-option" data-value="london">London</span>
+                                        <span class="custom-option" data-value="tokyo">Tokyo</span>
+                                        <span class="custom-option" data-value="venice">Venice</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-        
-                        <!-- <div class="form-control">
-                            <div class="select is-large">
-                                <select name="hotel_price">
-                                  <option>Price Range</option>
-                                  <option  value="0 to 250">Below RM 250</option>
-                                    <option  value="250 to 350">RM 250 to RM 350</option>
-                                    <option  value="350 to 400">RM 350 to RM 400</option>
-                                    <option  value="400 to 999999999">Above RM 400</option>
-                                        
-                                </select>
-                            </div>
-                        </div> -->
-        
-        
-                        <!-- <div class="form-control">
+                        <div class="form-control">
                             <div class="custom-select-wrapper">
                                 <div class="custom-select">
                                     <div class="custom-select__trigger"><span>Price Range</span>
-                                        <div class="arrow"><</div>
+                                        <div class="arrow"></div>
                                     </div>
                                     <div class="custom-options">
-                                        <span class="custom-option selected" data-value="">Price Range</span>
-                                        <span class="custom-option" data-value="0 to 250" name="hotel_price">Below RM 250</span>
-                                        <span class="custom-option" data-value="250 to 350" name="hotel_price">RM 250 to RM 350</span>
-                                        <span class="custom-option" data-value="350 to 400" name="hotel_price">RM 350 to RM 400</span>
-                                        <span class="custom-option" data-value="400 to 999999999" name="hotel_price">Above RM 400</span>
-                                        
+                                        <span class="custom-option selected" data-value="">Activity</span>
+                                        <span class="custom-option" data-value="Cycling + Mountain Biking">Cycling + Mountain Biking</span>
+                                        <span class="custom-option" data-value="Camping">Camping</span>
+                                        <span class="custom-option" data-value="Food Tourism">Food Tourism</span>
+                                        <span class="custom-option" data-value="Motorcycle Touring">Motorcycle Touring</span>
+                                        <span class="custom-option" data-value="Road Touring">Road Touring</span>
+                                        <span class="custom-option" data-value="Dirt Bike Touring">Dirt Bike Touring</span>
+                                        <span class="custom-option" data-value="Wine tourism">Wine tourism</span>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-control">
+                            <div class="custom-select-wrapper">
+                                <div class="custom-select">
+                                    <div class="custom-select__trigger"><span>Grade</span>
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="custom-options">
+                                        <span class="custom-option selected" data-value="Grade">Grade</span>
+                                        <span class="custom-option" data-value="Tourist">Tourist</span>
+                                        <span class="custom-option" data-value="Superior Tourist">Superior Tourist	</span>
+                                        <span class="custom-option" data-value="Standard">Standard	</span>
+                                        <span class="custom-option" data-value="Superior Standard">Superior Standard	</span>
+                                        <span class="custom-option" data-value="Comfort">Comfort</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            <div class="date-picker">
+                                <div class="selected-date"></div>
+                                <div class="dates">
+                                    <div class="month">
+                                        <div class="arrows prev-mth">&lt;</div>
+                                        <div class="mth"></div>
+                                        <div class="arrows next-mth">&gt;</div>
+                                    </div>
+                                    <div class="days"></div>
                                 </div>
                             </div>
                         </div> -->
                     </div>
-                    <button type="submit" class="btn btn-explore">Search</button>
+                    <button type="button" class="btn btn-explore">Explore</button>
                 </form>
             </div>
             <div class="hero-img">
-                <img src="/static/assets/img/hero.jpg" alt="">
+                <img src="assets/img/hero.jpg" alt="">
             </div>
         </div>
     </div>
@@ -150,7 +146,7 @@
     <div class="container">
         <div class="section-content">
             <div class="section-img">
-                <img src="/static/assets/img/explore.jpg" alt="">
+                <img src="assets/img/explore.jpg" alt="">
             </div>
             <div class="section-text">
                 <h3 class="section-title">A new way to explore the world </h3>
@@ -173,28 +169,28 @@
             </div>
             <div class="features-cards">
                 <div class="feature-card">
-                    <img src="/static/assets/img/features/raja-ampat.jpg" alt="" class="feature-img">
+                    <img src="assets/img/features/raja-ampat.jpg" alt="" class="feature-img">
                     <div class="feature-card-desc">
                         <span class="location">Raja Ampat</span>
                         <span class="country">Indonesia</span>
                     </div>
                 </div>
                 <div class="feature-card">
-                    <img src="/static/assets/img/features/fanjingshan.jpg" alt="" class="feature-img">
+                    <img src="assets/img/features/fanjingshan.jpg" alt="" class="feature-img">
                     <div class="feature-card-desc">
                         <span class="location">Fanjingshan</span>
                         <span class="country">China</span>
                     </div>
                 </div>
                 <div class="feature-card">
-                    <img src="/static/assets/img/features/vevey.jpg" alt="" class="feature-img">
+                    <img src="assets/img/features/vevey.jpg" alt="" class="feature-img">
                     <div class="feature-card-desc">
                         <span class="location">Vevey</span>
                         <span class="country">Switzerland</span>
                     </div>
                 </div>
                 <div class="feature-card">
-                    <img src="/static/assets/img/features/skadar.jpg" alt="" class="feature-img">
+                    <img src="assets/img/features/skadar.jpg" alt="" class="feature-img">
                     <div class="feature-card-desc">
                         <span class="location">Skadar</span>
                         <span class="country">Montenegro</span>
@@ -218,7 +214,7 @@
                 <a href="#" class="btn btn-explore">Download</a>
             </div>
             <div class="section-img">
-                <img src="/static/assets/img/guides.jpg" alt="">
+                <img src="assets/img/guides.jpg" alt="">
             </div>
         </div>
     </div>
@@ -235,11 +231,11 @@
                 <div class="testimonial-item active">
                     <div class="testimonial-text">
                         <div class="rating">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
                         </div>
                         <p class="testimonial-description">
                             “Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque eu, facilisis quis purus. Morbi blandit sit amet turpis nec”
@@ -249,17 +245,17 @@
 
                     </div>
                     <div class="testimonial-img">
-                        <img src="/static/assets/img/testimonials/testimonial-1.jpg" alt="">
+                        <img src="assets/img/testimonials/testimonial-1.jpg" alt="">
                     </div>
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-text">
                         <div class="rating">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
                         </div>
                         <p class="testimonial-description">
                             “Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque eu, facilisis quis purus. Morbi blandit sit amet turpis nec”
@@ -269,17 +265,17 @@
 
                     </div>
                     <div class="testimonial-img">
-                        <img src="/static/assets/img/testimonials/testimonial-2.jpg" alt="">
+                        <img src="assets/img/testimonials/testimonial-2.jpg" alt="">
                     </div>
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-text">
                         <div class="rating">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
                         </div>
                         <p class="testimonial-description">
                             “Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque eu, facilisis quis purus. Morbi blandit sit amet turpis nec”
@@ -289,17 +285,17 @@
 
                     </div>
                     <div class="testimonial-img">
-                        <img src="/static/assets/img/testimonials/testimonial-3.jpg" alt="">
+                        <img src="assets/img/testimonials/testimonial-3.jpg" alt="">
                     </div>
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-text">
                         <div class="rating">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
                         </div>
                         <p class="testimonial-description">
                             “Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque eu, facilisis quis purus. Morbi blandit sit amet turpis nec”
@@ -309,17 +305,17 @@
 
                     </div>
                     <div class="testimonial-img">
-                        <img src="/static/assets/img/testimonials/testimonial-4.jpg" alt="">
+                        <img src="assets/img/testimonials/testimonial-4.jpg" alt="">
                     </div>
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-text">
                         <div class="rating">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
                         </div>
                         <p class="testimonial-description">
                             “Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque eu, facilisis quis purus. Morbi blandit sit amet turpis nec”
@@ -329,17 +325,17 @@
 
                     </div>
                     <div class="testimonial-img">
-                        <img src="/static/assets/img/testimonials/testimonial-5.jpg" alt="">
+                        <img src="assets/img/testimonials/testimonial-5.jpg" alt="">
                     </div>
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-text">
                         <div class="rating">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
-                            <img src="/static/assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
+                            <img src="assets/img/star.svg" alt="">
                         </div>
                         <p class="testimonial-description">
                             “Quisque in lacus a urna fermentum euismod. Integer mi nibh, dapibus ac scelerisque eu, facilisis quis purus. Morbi blandit sit amet turpis nec”
@@ -349,7 +345,7 @@
 
                     </div>
                     <div class="testimonial-img">
-                        <img src="/static/assets/img/testimonials/testimonial-6.jpg" alt="">
+                        <img src="assets/img/testimonials/testimonial-6.jpg" alt="">
                     </div>
                 </div>
                 <div class="direction">
@@ -372,21 +368,21 @@
             </div>
             <div class="stories">
                 <div class="story">
-                    <img src="/static/assets/img/stories/story-1.jpg" alt="" class="story-img">
+                    <img src="assets/img/stories/story-1.jpg" alt="" class="story-img">
                     <h4 class="story-title">The many benefits of taking a healing holiday</h4>
                     <p class="story-desc">‘Helaing holidays’ are on the rise
                         tohelp maximise your health and happines...</p>
                     <a href="#" class="read-more">Read More</a>
                 </div>
                 <div class="story">
-                    <img src="/static/assets/img/stories/story-2.jpg" alt="" class="story-img">
+                    <img src="assets/img/stories/story-2.jpg" alt="" class="story-img">
                     <h4 class="story-title">The best Kyoto restaurant to try Japanese food</h4>
                     <p class="story-desc">From tofu to teahouses, here’s our guide to Kyoto’s best restaurants
                         to visit...</p>
                     <a href="#" class="read-more">Read More</a>
                 </div>
                 <div class="story">
-                    <img src="/static/assets/img/stories/story-3.jpg" alt="" class="story-img">
+                    <img src="assets/img/stories/story-3.jpg" alt="" class="story-img">
                     <h4 class="story-title">Skip Chichen Itza and head to this remote Yucatan</h4>
                     <p class="story-desc">It’s remote and challenging to get,
                         but braving the jungle and exploring
@@ -394,7 +390,7 @@
                     <a href="#" class="read-more">Read More</a>
                 </div>
                 <div class="story">
-                    <img src="/static/assets/img/stories/story-4.jpg" alt="" class="story-img">
+                    <img src="assets/img/stories/story-4.jpg" alt="" class="story-img">
                     <h4 class="story-title">Surf’s up at these beginner spots around the world</h4>
                     <p class="story-desc">If learning to surf has in on your to-
                         do list for a while, the good news
@@ -413,7 +409,7 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-text">
-                <img src="/static/assets/img/logo.svg" alt="" class="footer-icon">
+                <img src="assets/img/logo.svg" alt="" class="footer-icon">
                 <p class="footer-desc">
                     Plan and book your perfect trip with
                     expert advice, travel tips destination
@@ -485,19 +481,19 @@
             </div>
             <div class="social-media">
                 <a href="#" class="social-link">
-                    <img src="/static/assets/img/social-media/twitter.svg" class="icon" alt="">
+                    <img src="assets/img/social-media/twitter.svg" class="icon" alt="">
                 </a>
                 <a href="#" class="social-link">
-                    <img src="/static/assets/img/social-media/facebook.svg" alt="">
+                    <img src="assets/img/social-media/facebook.svg" alt="">
                 </a>
                 <a href="#" class="social-link">
-                    <img src="/static/assets/img/social-media/instagram.svg" alt="">
+                    <img src="assets/img/social-media/instagram.svg" alt="">
                 </a>
                 <a href="#" class="social-link">
-                    <img src="/static/assets/img/social-media/linkedin.svg" alt="">
+                    <img src="assets/img/social-media/linkedin.svg" alt="">
                 </a>
                 <a href="#" class="social-link">
-                    <img src="/static/assets/img/social-media/youtube.svg" alt="">
+                    <img src="assets/img/social-media/youtube.svg" alt="">
                 </a>
             </div>
         </div>
@@ -508,6 +504,6 @@
 <div class="arrow-up"><i><</i></div>
 
 
-<script src="/static/assets/js/main.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

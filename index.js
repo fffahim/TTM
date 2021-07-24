@@ -1,6 +1,6 @@
 const express 		= require('express');
 const bodyParser 	= require('body-parser');
-const exSession 	= require('express-session');
+const session 	= require('express-session');
 const cookieParser 	= require('cookie-parser');
 const path = require('path');
 const cons = require('consolidate');
@@ -10,6 +10,7 @@ const register = require('./controller/registration');
 const adminhome			= require('./controller/admincontroller/admin')
 const customer = require('./controller/customercontroller/ccashboard')
 const hotels = require('./controller/hotels')
+const transports = require('./controller/transports')
 const home = require('./controller/home')
 const app 			= express();
 const { check, validationResult } = require('express-validator');
@@ -20,16 +21,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(exSession({ secret: 'my secret value', saveUninitialized: true, resave: false }));
+app.use(session({ secret: 'my secret value', saveUninitialized: true, resave: false }));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, '/public')));
 
+app.use('',function(req, res, next) {
+	console.log(req.session.user_name);
+  res.locals.glob = req.session.user_name;
+  next();
+});
 app.use('/login', login);
 app.use('/register',register)
 app.use('/logout', logout);
 app.use('/admin',adminhome);
 app.use('/customer',customer);
 app.use('/hotels', hotels);
+app.use('/transports', transports);
 app.use('/', home);
 // app.get('/', (req, res)=>{
 // 	res.redirect('/home');	

@@ -3,9 +3,9 @@ const router = express.Router();
 
 router.get('/', (req, res)=>{
 
-	//req.session.uname = null;
+	req.session.destroy();
 	res.clearCookie('username');
-	res.redirect('/login');
+	res.redirect('/');
 })
 
 module.exports = router;

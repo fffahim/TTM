@@ -29,16 +29,23 @@
                         <a href="/hotels" class="nav-link">Hotels</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Transport</a>
+                        <a href="/transports" class="nav-link">Transport</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">About</a>
                     </li>
                 </ul>
+                {% if glob == [] %}
                 <div class="nav-form">
                     <a href="/login" class="btn btn-login">Login</a>
                     <a href="/register" class="btn btn-register">Register</a>
                 </div>
+                {% else %}
+                <div class="nav-form">
+                    <a href="/mybookings" class="btn btn-login">My Bookings</a>
+                    <a href="/logout" class="btn btn-register">Logout</a>
+                </div>
+                {% endif %}
             </div>
             <div class="hamburger-menu-wrap">
                 <div class="hamburger-menu">

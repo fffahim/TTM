@@ -6,6 +6,7 @@ router.get('/', (req, res)=>{
 	res.render('login')
 })
 router.post('/',(req,res)=>{
+	console.log(req.body)
 	var user={
 		user_name : req.body.username,
 		user_password: req.body.password
@@ -14,6 +15,8 @@ router.post('/',(req,res)=>{
 		if(results>0)
 		{
 			res.cookie('username', req.body.username);
+			req.session.user_name = req.body.username;
+			console.log(req.session.user_name)
 			if(user.user_name=='admin') res.redirect('/admin')
 			else res.redirect('/customer')	
 		}

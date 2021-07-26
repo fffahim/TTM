@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer Name | Morey!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/mustafadalga/tour-and-travel/master/assets/img/logo.svg">
+  </head>
+  <body>
+
+    <script>
+      function hide(id) {
+        if (id=='current'){
+          document.getElementById('current-hbox').style.display='block';
+          document.getElementById('current-tbox').style.display='block';
+          document.getElementById('history-hbox').style.display='none';
+          document.getElementById('history-tbox').style.display='none';
+        }
+        else{
+          document.getElementById('current-hbox').style.display='none';
+          document.getElementById('current-tbox').style.display='none';
+          document.getElementById('history-hbox').style.display='block';
+          document.getElementById('history-tbox').style.display='block';
+        }
+        
+      }
+    </script>
+    
+  <section class="section">
+    <img src="https://raw.githubusercontent.com/mustafadalga/tour-and-travel/master/assets/img/logo.svg" alt="">
+    <button onclick="window.location.href='/logout'" class="button is-danger" style="float: right; background-color: #fb8f1d; margin-left: 6px;">Logout</button>
+    <!-- <button  class="button" style="float: right; color: #fb8f1d; margin-left: 6px;" >Hello {{ glob[0] }}!</button> -->
+    
+    <a style="float: right; color: #fb8f1d; margin-left: 6px;" href="/transports" class="button">Transports</a> 
+    <a style="float: right; color: #fb8f1d; margin-left: 6px;" href="/hotels" class="button">Hotels</a>
+    <a style="float: right; color: #fb8f1d; " href="/" class="button">Home</a>
+
+    <div class="container">
+      <br>
+      <h1 class="title">
+        Welcome {{ glob[0] }}!
+      </h1>
+
+      
+      <!-- Main container -->
+      <nav class="level">
+        <!-- Left side -->
+        <div class="level-left">
+            
+            <p class="level-item"><a onclick="hide(this.id)" id="current">Current</a></p>
+            <p class="level-item"><a onclick="hide(this.id)" id="history">History</a></p>
+            <!-- <p class="level-item"><a>Hotels</a></p>
+            <p class="level-item"><a>History</a></p> -->
+          <!-- <p class="level-item"><strong>All</strong></p> -->
+          <!-- <p class="level-item"><a>Drafts</a></p> -->
+          <!-- <p class="level-item"><a>Deleted</a></p> -->
+          
+        </div>
+
+        <!-- Right side -->
+        <div class="level-right">
+            
+          <div class="level-item">
+            <div class="field has-addons">
+              <p class="control">
+                <input class="input" type="text" placeholder="Find booking">
+              </p>
+              <p class="control">
+                <button class="button">
+                  Search
+                </button>
+              </p>
+            </div>
+          </div>
+          <p class="level-item">
+            <!-- <div class="dropdown is-hoverable">
+              <div class="dropdown-trigger">
+                <button class="button is-success" aria-haspopup="true" aria-controls="dropdown-menu4">
+                  <span>Book Here!</span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                <div class="dropdown-content">
+                  <a href="#" class="dropdown-item" onclick="document.getElementById('hotel-modal').style.display='block'">
+                    Book Hotel
+                  </a>
+                  <a href="#" class="dropdown-item" onclick="document.getElementById('transport-modal').style.display='block'">
+                    Book Transport
+                  </a>
+                </div>
+              </div>
+            </div> -->
+            <!-- <a class="button is-success" onclick="document.getElementById('modal').style.display='block'">Book Here!</a> -->
+          </p>
+        </div>
+      </nav>
+      <hr>
+       
+
+      <div class="box" id="current-hbox">
+        <h1 class="subtitle"> <b>Hotel Bookings</b></h1>
+        <hr>
+        <!-- Table starts from here -->
+       <table class="table is-striped">
+        <thead>
+          <tr>
+            <!-- <th><abbr title="Position">Book ID</abbr></th> -->
+            <th>Booking ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Hotel Phone</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in hotels %}
+              {% if (item.booking_status != 'paid' && item.booking_status != 'rejected') %}
+              <tr>
+                <th>#MBH00{{ item.booking_id }}</th>
+                <td>{{ item.hotel_name }}</td>
+                <td>{{ item.location }}</td>
+                <td>{{ item.phone }}</td>
+                <td>{{ item.date }}</td>
+                <td>RM {{ item.price }}</td>
+                <td>{{ item.booking_status }}</td>
+                <td>
+                  <div class="buttons">
+                    {% if item.booking_status == 'pending' %}
+                      <button class="button is-success is-light is-small" href="/payment/{{item.price}}/{{item.booking_id}}/hotel_bookings" disabled> Pay </button>
+                    {% else %}
+                    <a class="button is-success is-light is-small" href="/payment/{{item.price}}/{{item.booking_id}}/hotel_bookings"> Pay </a>
+                    {% endif %}
+                    <a class="button is-danger is-light is-small" href="/booking"> Cancel </a>
+                  </div>
+                </td>
+              </tr>
+              {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+      </div>
+
+      <div class="box" id="current-tbox">
+        <h1 class="subtitle"> <b>Transport Bookings</b></h1>
+        <hr>
+        <!-- Table starts from here -->
+       <table class="table is-striped">
+        <thead>
+          <tr>
+            <!-- <th><abbr title="Position">Book ID</abbr></th> -->
+            <th>Booking ID</th>
+            <th>Name</th>
+            <th>Pickup</th>
+            <th>Dropoff</th>
+            <th>Time</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in transports %}
+              {% if (item.booking_status != 'paid' && item.booking_status != 'rejected') %}
+              <tr>
+                <th>#MBT00{{ item.booking_id }}</th>
+                <td>{{ item.transport_name }}</td>
+                <td>{{ item.pickup }}</td>
+                <td>{{ item.dropoff }}</td>
+                <td>{{ item.time }}</td>
+                <td>RM {{ item.price }}</td>
+                <td>{{ item.booking_status }}</td>
+                <td>
+                  <div class="buttons">
+                    {% if item.booking_status == 'pending' %}
+                      <button class="button is-success is-light is-small" href="/payment/{{item.price}}/{{item.booking_id}}/transport_bookings" disabled> Pay </button>
+                    {% else %}
+                      <a class="button is-success is-light is-small" href="/payment/{{item.price}}/{{item.booking_id}}/transport_bookings"> Pay </a>
+                    {% endif %}
+                    <a class="button is-danger is-light is-small" href="/booking"> Cancel </a>
+                  </div>
+                </td>
+              </tr>
+              {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+      </div>
+
+      <div class="box" id="history-hbox" style="display: none;">
+        <h1 class="subtitle"> <b>History | Hotel Bookings</b></h1>
+        <hr>
+        <!-- Table starts from here -->
+       <table class="table is-striped">
+        <thead>
+          <tr>
+            <!-- <th><abbr title="Position">Book ID</abbr></th> -->
+            <th>Booking ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Hotel Phone</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <!-- <th>Action</th> -->
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in hotels %}
+            {% if (item.booking_status == 'paid' || item.booking_status == 'rejected') %}
+              <tr>
+                <th>#MBH00{{ item.booking_id }}</th>
+                <td>{{ item.hotel_name }}</td>
+                <td>{{ item.location }}</td>
+                <td>{{ item.phone }}</td>
+                <td>{{ item.date }}</td>
+                <td>RM {{ item.price }}</td>
+                <td>{{ item.booking_status }}</td>
+                <td>
+                  <div class="buttons">
+                    <!-- <a class="button is-success is-light is-small" href="/payment/{{item.price}}"> Pay </a>
+                    <a class="button is-danger is-light is-small" href="/booking"> Cancel </a> -->
+                  </div>
+                </td>
+              </tr>
+              {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+
+      <div class="box" id="history-tbox" style="display: none;">
+        <h1 class="subtitle"> <b>History | Transport Bookings</b></h1>
+        <hr>
+        <!-- Table starts from here -->
+       <table class="table is-striped">
+        <thead>
+          <tr>
+            <!-- <th><abbr title="Position">Book ID</abbr></th> -->
+            <th>Booking ID</th>
+            <th>Name</th>
+            <th>Pickup</th>
+            <th>Dropoff</th>
+            <th>Time</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <!-- <th>Action</th> -->
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in transports %}
+            {% if (item.booking_status == 'paid' || item.booking_status == 'rejected') %}
+              <tr>
+                <th>#MBT00{{ item.booking_id }}</th>
+                <td>{{ item.transport_name }}</td>
+                <td>{{ item.pickup }}</td>
+                <td>{{ item.dropoff }}</td>
+                <td>{{ item.time }}</td>
+                <td>RM {{ item.price }}</td>
+                <td>{{ item.booking_status }}</td>
+                <td>
+                  <!-- <div class="buttons">
+                    <a class="button is-success is-light is-small" href="/payment/{{item.price}}"> Pay </a>
+                    <a class="button is-danger is-light is-small" href="/booking"> Cancel </a>
+                  </div> -->
+                </td>
+              </tr>
+              {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+      </div>
+    </div>
+  </section>
+  </body>
+</html>

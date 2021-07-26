@@ -12,13 +12,15 @@ router.post('/',(req,res)=>{
 		user_password: req.body.password
 	}
 	loginModel.validate(user,(results)=>{
-		if(results>0)
+		if(results.length>0)
 		{
 			res.cookie('username', req.body.username);
 			req.session.user_name = req.body.username;
-			console.log(req.session.user_name)
+			req.session.user_id = results[0]['user_id'];
+			req.session.user_email = results[0]['email'];
+			req.session.user_phone = results[0]['phone'];
 			if(user.user_name=='admin') res.redirect('/admin')
-			else res.redirect('/customer')	
+			else res.redirect('/')	
 		}
 		else
 		{

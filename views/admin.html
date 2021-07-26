@@ -10,21 +10,39 @@
   <body>
   <section class="section">
     <img src="https://raw.githubusercontent.com/mustafadalga/tour-and-travel/master/assets/img/logo.svg" alt="">
-    <button class="button is-danger" style="float: right; background-color: #fb8f1d; margin-left: 6px;">Logout</button>
-    <button class="button" style="float: right; color: #fb8f1d;" >Hello Admin!</button>
+    <button onclick="window.location.href='/logout'" class="button is-danger" style="float: right; background-color: #fb8f1d; margin-left: 6px;">Logout</button>
+    <!-- <button class="button" style="float: right; color: #fb8f1d;" >Hello Admin!</button> -->
+
+    <!-- <a style="float: right; color: #fb8f1d; margin-left: 6px;" href="/transports" class="button">Transports</a> 
+    <a style="float: right; color: #fb8f1d; margin-left: 6px;" href="/hotels" class="button">Hotels</a>
+    <a style="float: right; color: #fb8f1d; " href="/" class="button">Home</a> -->
+
     <div class="container">
       <h1 class="title">
         Admin Dashboard
       </h1>
+
+      <script>
+        function hide(id) {
+          if (id=='hotel'){
+            document.getElementById('hotel-box').style.display='block';
+            document.getElementById('transport-box').style.display='none';
+          }
+          else{
+            document.getElementById('hotel-box').style.display='none';
+            document.getElementById('transport-box').style.display='block';
+          }
+          
+        }
+      </script>
       
       <!-- Main container -->
       <nav class="level">
         <!-- Left side -->
         <div class="level-left">
-          <p class="level-item"><strong>All</strong></p>
-          <p class="level-item"><a>Published</a></p>
-          <p class="level-item"><a>Drafts</a></p>
-          <p class="level-item"><a>Deleted</a></p>
+          <p class="level-item"><a onclick="hide(this.id)" id="hotel">Hotel Bookings</a></p>
+          <p class="level-item"><a onclick="hide(this.id)" id="transport">Transport Bookings</a></p>
+          <!-- <p class="level-item"><a>Deleted</a></p> -->
           <!-- <p class="level-item"><a class="button is-success">New</a></p> -->
         </div>
 
@@ -47,300 +65,107 @@
       </nav>
       <hr>
        
-
-      <div class="box">
+      <div class="box" id="hotel-box" >
+        <h1 class="subtitle"> <b>Hotel Bookings</b></h1>
+        <hr>
         <!-- Table starts from here -->
-       <table class="table">
+       <table class="table is-striped">
         <thead>
           <tr>
-            <th><abbr title="Position">Pos</abbr></th>
-            <th>Team</th>
-            <th><abbr title="Played">Pld</abbr></th>
-            <th><abbr title="Won">W</abbr></th>
-            <th><abbr title="Drawn">D</abbr></th>
-            <th><abbr title="Lost">L</abbr></th>
-            <th><abbr title="Goals for">GF</abbr></th>
-            <th><abbr title="Goals against">GA</abbr></th>
-            <th><abbr title="Goal difference">GD</abbr></th>
-            <th><abbr title="Points">Pts</abbr></th>
-            <th>Qualification or relegation</th>
+            <!-- <th><abbr title="Position">Book ID</abbr></th> -->
+            <th>Booking ID</th>
+            <th>User ID</th>
+            <th>User Phone</th>
+            <th>User Email</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Hotel Phone</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <th>1</th>
-            <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-            </td>
-            <td>38</td>
-            <td>23</td>
-            <td>12</td>
-            <td>3</td>
-            <td>68</td>
-            <td>36</td>
-            <td>+32</td>
-            <td>81</td>
-            <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-            <td>
-              <div class="buttons">
-                <button class="button is-success is-light is-small">Accept</button>
-                <button class="button is-danger is-light is-small">Reject</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th>2</th>
-            <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>
-            <td>38</td>
-            <td>20</td>
-            <td>11</td>
-            <td>7</td>
-            <td>65</td>
-            <td>36</td>
-            <td>+29</td>
-            <td>71</td>
-            <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-          </tr>
-          <tr>
-            <th>3</th>
-            <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
-            <td>38</td>
-            <td>19</td>
-            <td>13</td>
-            <td>6</td>
-            <td>69</td>
-            <td>35</td>
-            <td>+34</td>
-            <td>70</td>
-            <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-          </tr>
-          <tr class="is-selected">
-            <th>4</th>
-            <td><a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">Manchester City</a></td>
-            <td>38</td>
-            <td>19</td>
-            <td>9</td>
-            <td>10</td>
-            <td>71</td>
-            <td>41</td>
-            <td>+30</td>
-            <td>66</td>
-            <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Play-off_round" title="2016–17 UEFA Champions League">Champions League play-off round</a></td>
-          </tr>
-          <tr>
-            <th>5</th>
-            <td><a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">Manchester United</a></td>
-            <td>38</td>
-            <td>19</td>
-            <td>9</td>
-            <td>10</td>
-            <td>49</td>
-            <td>35</td>
-            <td>+14</td>
-            <td>66</td>
-            <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
-          </tr>
-          <tr>
-            <th>6</th>
-            <td><a href="https://en.wikipedia.org/wiki/Southampton_F.C." title="Southampton F.C.">Southampton</a></td>
-            <td>38</td>
-            <td>18</td>
-            <td>9</td>
-            <td>11</td>
-            <td>59</td>
-            <td>41</td>
-            <td>+18</td>
-            <td>63</td>
-            <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
-          </tr>
-          <tr>
-            <th>7</th>
-            <td><a href="https://en.wikipedia.org/wiki/West_Ham_United_F.C." title="West Ham United F.C.">West Ham United</a></td>
-            <td>38</td>
-            <td>16</td>
-            <td>14</td>
-            <td>8</td>
-            <td>65</td>
-            <td>51</td>
-            <td>+14</td>
-            <td>62</td>
-            <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Third_qualifying_round" title="2016–17 UEFA Europa League">Europa League third qualifying round</a></td>
-          </tr>
-          <tr>
-            <th>8</th>
-            <td><a href="https://en.wikipedia.org/wiki/Liverpool_F.C." title="Liverpool F.C.">Liverpool</a></td>
-            <td>38</td>
-            <td>16</td>
-            <td>12</td>
-            <td>10</td>
-            <td>63</td>
-            <td>50</td>
-            <td>+13</td>
-            <td>60</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>9</th>
-            <td><a href="https://en.wikipedia.org/wiki/Stoke_City_F.C." title="Stoke City F.C.">Stoke City</a></td>
-            <td>38</td>
-            <td>14</td>
-            <td>9</td>
-            <td>15</td>
-            <td>41</td>
-            <td>55</td>
-            <td>−14</td>
-            <td>51</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>10</th>
-            <td><a href="https://en.wikipedia.org/wiki/Chelsea_F.C." title="Chelsea F.C.">Chelsea</a></td>
-            <td>38</td>
-            <td>12</td>
-            <td>14</td>
-            <td>12</td>
-            <td>59</td>
-            <td>53</td>
-            <td>+6</td>
-            <td>50</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>11</th>
-            <td><a href="https://en.wikipedia.org/wiki/Everton_F.C." title="Everton F.C.">Everton</a></td>
-            <td>38</td>
-            <td>11</td>
-            <td>14</td>
-            <td>13</td>
-            <td>59</td>
-            <td>55</td>
-            <td>+4</td>
-            <td>47</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>12</th>
-            <td><a href="https://en.wikipedia.org/wiki/Swansea_City_A.F.C." title="Swansea City A.F.C.">Swansea City</a></td>
-            <td>38</td>
-            <td>12</td>
-            <td>11</td>
-            <td>15</td>
-            <td>42</td>
-            <td>52</td>
-            <td>−10</td>
-            <td>47</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>13</th>
-            <td><a href="https://en.wikipedia.org/wiki/Watford_F.C." title="Watford F.C.">Watford</a></td>
-            <td>38</td>
-            <td>12</td>
-            <td>9</td>
-            <td>17</td>
-            <td>40</td>
-            <td>50</td>
-            <td>−10</td>
-            <td>45</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>14</th>
-            <td><a href="https://en.wikipedia.org/wiki/West_Bromwich_Albion_F.C." title="West Bromwich Albion F.C.">West Bromwich Albion</a></td>
-            <td>38</td>
-            <td>10</td>
-            <td>13</td>
-            <td>15</td>
-            <td>34</td>
-            <td>48</td>
-            <td>−14</td>
-            <td>43</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>15</th>
-            <td><a href="https://en.wikipedia.org/wiki/Crystal_Palace_F.C." title="Crystal Palace F.C.">Crystal Palace</a></td>
-            <td>38</td>
-            <td>11</td>
-            <td>9</td>
-            <td>18</td>
-            <td>39</td>
-            <td>51</td>
-            <td>−12</td>
-            <td>42</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>16</th>
-            <td><a href="https://en.wikipedia.org/wiki/A.F.C._Bournemouth" title="A.F.C. Bournemouth">AFC Bournemouth</a></td>
-            <td>38</td>
-            <td>11</td>
-            <td>9</td>
-            <td>18</td>
-            <td>45</td>
-            <td>67</td>
-            <td>−22</td>
-            <td>42</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>17</th>
-            <td><a href="https://en.wikipedia.org/wiki/Sunderland_A.F.C." title="Sunderland A.F.C.">Sunderland</a></td>
-            <td>38</td>
-            <td>9</td>
-            <td>12</td>
-            <td>17</td>
-            <td>48</td>
-            <td>62</td>
-            <td>−14</td>
-            <td>39</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>18</th>
-            <td><a href="https://en.wikipedia.org/wiki/Newcastle_United_F.C." title="Newcastle United F.C.">Newcastle United</a> <strong>(R)</strong>
-            </td>
-            <td>38</td>
-            <td>9</td>
-            <td>10</td>
-            <td>19</td>
-            <td>44</td>
-            <td>65</td>
-            <td>−21</td>
-            <td>37</td>
-            <td>Relegation to the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship" title="2016–17 Football League Championship">Football League Championship</a></td>
-          </tr>
-          <tr>
-            <th>19</th>
-            <td><a href="https://en.wikipedia.org/wiki/Norwich_City_F.C." title="Norwich City F.C.">Norwich City</a> <strong>(R)</strong>
-            </td>
-            <td>38</td>
-            <td>9</td>
-            <td>7</td>
-            <td>22</td>
-            <td>39</td>
-            <td>67</td>
-            <td>−28</td>
-            <td>34</td>
-            <td>Relegation to the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship" title="2016–17 Football League Championship">Football League Championship</a></td>    </tr>
-          <tr>
-            <th>20</th>
-            <td><a href="https://en.wikipedia.org/wiki/Aston_Villa_F.C." title="Aston Villa F.C.">Aston Villa</a> <strong>(R)</strong>
-            </td>
-            <td>38</td>
-            <td>3</td>
-            <td>8</td>
-            <td>27</td>
-            <td>27</td>
-            <td>76</td>
-            <td>−49</td>
-            <td>17</td>
-            <td>Relegation to the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship" title="2016–17 Football League Championship">Football League Championship</a></td>
-          </tr>
+          {% for item in hotels %}
+              <tr>
+                <th>#MBH00{{ item.booking_id }}</th>
+                <td>{{ item.user_id }}</td>
+                <td>{{ item.user_phone }}</td>
+                <td>{{ item.user_email }}</td>
+                <td>{{ item.hotel_name }}</td>
+                <td>{{ item.location }}</td>
+                <td>{{ item.phone }}</td>
+                <td>{{ item.date}}</td>
+                <td>RM {{ item.price }}</td>
+                <td>{{ item.booking_status }}</td>
+                <td>
+                  <div class="buttons">
+                    <a class="button is-success is-light is-small" href="/admin/update/hotel_bookings/{{item.booking_id}}/accepted">Accept</a>
+                    <!-- <button class="button is-success is-light is-small">Accept</button> -->
+                    <a class="button is-danger is-light is-small" href="/admin/update/hotel_bookings/{{item.booking_id}}/rejected">Reject</a>
+                  </div>
+                </td>
+              </tr>
+          {% endfor %}
         </tbody>
       </table>
+
+
       </div>
+
+      <div class="box" id="transport-box" style="display: none;">
+        <h1 class="subtitle"> <b>Transport Bookings</b></h1>
+        <hr>
+        <!-- Table starts from here -->
+       <table class="table is-striped">
+        <thead>
+          <tr>
+            <!-- <th><abbr title="Position">Book ID</abbr></th> -->
+            <th>Booking ID</th>
+            <th>User ID</th>
+            <th>User Phone</th>
+            <th>User Email</th>
+            <th>Name</th>
+            <th>Pickup</th>
+            <th>Dropoff</th>
+            <th>Time</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in transports %}
+              <tr>
+                <th>#MBT00{{ item.booking_id }}</th>
+                <td>{{ item.user_id }}</td>
+                <td>{{ item.user_phone }}</td>
+                <td>{{ item.user_email }}</td>
+                <td>{{ item.transport_name }}</td>
+                <td>{{ item.pickup }}</td>
+                <td>{{ item.dropoff }}</td>
+                <td>{{ item.time }}</td>
+                <td>RM {{ item.price }}</td>
+                <td>{{ item.booking_status }}</td>
+                <td>
+                  <div class="buttons">
+                    <a class="button is-success is-light is-small" href="/admin/update/{{ttable}}/{{item.booking_id}}/accepted">Accept</a>
+                    <!-- <button class="button is-success is-light is-small">Accept</button> -->
+                    <a class="button is-danger is-light is-small" href="/admin/update/{{ttable}}/{{item.booking_id}}/rejected">Reject</a>
+              
+                  </div>
+                </td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+      </div>
+      
     </div>
   </section>
   </body>

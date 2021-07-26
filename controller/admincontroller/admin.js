@@ -1,3 +1,4 @@
+const cons = require('consolidate');
 const express = require('express')
 const adminModel = require.main.require('./models/adminModel')
 const router = express.Router()
@@ -5,7 +6,14 @@ const {check,validationResult}=require('express-validator');
 router.get('/',(req,res)=>{
 	if(req.cookies['username']!=null)
 	{
-		res.render('admin')
+		adminModel.getAll('hotel_bookings',(results)=>{
+			var hotels
+			hotels = results
+			adminModel.getAll('transport_bookings',(results)=>{
+				var transports = results
+				res.render('admin',{'hotels':hotels, 'transports':transports, 'ttable': "transport_bookings"})
+			})
+		})
 	}
 	else res.redirect('/login')
 });
@@ -36,49 +44,12 @@ router.get('/delete/:id/:table',(res,req)=>{
 		res.send("error")
 	}
 });
-router.post('/update/:table/',(res,req)=>{
-	var table = req.params.table;
-	var user;
-	if(table=='user_info') 
-	{
-		user = {
-			user_name : req.body.user_name,
-			user_id : req.body.user_id,
-			user_email : req.body.user_email,
-			user_password : req.body.user_password,
-			user_phone : req.body.user_phone
-		}
-	}
-	else if(table=='booking_info')
-	{
-		user = {
-			booking_id : req.body.booking_id,
-			booking_date : req.body.booking_date,
-			booking_status : req.body.booking_status
-		}
-	}
-	else if(table=='hotel_info')
-	{
-		user = {
-			hotel_name : req.body.hotel_name,
-			hotel_id : req.body.hotel_id,
-			hotel_address : req.body.hotel_address,
-			hotel_price : req.body.hotel_price,
-			hotel_description : req.body.hotel_description,
-			hotel_phone : req.body.hotel_phone
-		}
-	}
-	else if(table=='transport_info')
-	{
-		user = {
-			transport_type : req.body.transport_type,
-			transport_id : req.body.transport_id,
-			driver_license : req.body.driver_license,
-			transport_phone : req.body.transport_phone
-		}
-	}
-	adminModel.updateinfo(user,table,(status)=>{
-		res.send(status)
+router.get('/update/:table/:id/:status',(req,res)=>{
+	var table = req.params.table
+	var id = req.params.id
+	var bstatus = req.params.status
+	adminModel.updateinfo(id,table,bstatus,(status)=>{
+		res.redirect('/admin');
 	})
 });
 router.post('/v1/order/order-placement',[

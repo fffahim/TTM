@@ -9,6 +9,12 @@
     <link rel="icon" type="image/png" href="/static/assets/img/logo.svg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="/static/assets/css/main.css">
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+
+    <!-- script-passing value to modal -->
+    
+    <!-- script-passing value to modal -->
+
 </head>
 <body>
 
@@ -29,7 +35,7 @@
                         <a href="/hotels" class="nav-link">Hotels</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/transport" class="nav-link">Transport</a>
+                        <a href="/transports" class="nav-link">Transport</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">About</a>
@@ -42,7 +48,7 @@
                 </div>
                 {% else %}
                 <div class="nav-form">
-                    <a href="/mybookings" class="btn btn-login">My Bookings</a>
+                    <a href="/booking" class="btn btn-login">My Bookings</a>
                     <a href="/logout" class="btn btn-register">Logout</a>
                 </div>
                 {% endif %}
@@ -58,6 +64,45 @@
     </div>
 </header>
 <!--End Header-->
+
+<!-- modal start -->
+<div class="modal" id="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <!-- Any other Bulma elements you want -->
+      <div class="box" style="margin-top: 20%;">
+        <h1 class="title">Booking Summary</h1>
+        <hr>
+        
+        <h4 class="title is-4">Please press confirm for booking</h4>
+        
+          <!-- <h3 class="title is-3">Total Price: RM </h3> -->
+        
+        <hr>
+        <form action="/booking/transport" method="POST">
+            <span name="info" id="info"></span>
+            <input type="hidden" name="name" id="name">
+            <input type="hidden" name="pickup" id="pickup">
+            <input type="hidden" name="dropoff" id="dropoff">
+            <input type="hidden"  name="time" id="time">
+            <input type="hidden" name="price" id="price">
+
+            <br>
+            
+            <button type="submit" class="button is-success">Confirm</button><br>
+        </form>
+        <button class="button is-link is-light" onclick="document.getElementById('modal').style.display='none'">Cancel</button>
+                
+    </div>
+        
+    <button onclick="document.getElementById('modal').style.display='none'" class="modal-close is-large" aria-label="close"></button>
+
+
+      </div>
+    </div>
+    <button onclick="document.getElementById('modal').style.display='none'" class="modal-close is-large" aria-label="close"></button>
+  </div>
+<!-- modal end -->
 
 <!-- Hero -->
 <section class="section">
@@ -106,22 +151,30 @@
         <hr>
         {% for tp in transports %}
         
-            <div class="box">
+            <div class="box" id="{{tp.transport_id}}">
                     <div class="section-content">
                         <div class="">
                             <img style="max-width: 80%; width: 350px;" src="{{ tp.transport_photo }}" alt="">
                         </div>
                         <div class="">
-                            <h3 class="section-title">{{ tp.operator_name }}</h3>
+                            <h3 id="name-p" class="section-title">{{ tp.operator_name }}</h3>
                             <hr>
-                            <p class="p-description">
-                                Pickup Point: {{ tp.pickup }} <br>
+                            
+                            <p class="full p-description">
+                                Pickup Point: {{ tp.pickup }}<br>
                                 Dropoff Point: {{ tp.dropoff }} <br>
-                                Time: RM {{ tp.time }} <br>
-                                Price: {{ tp.price }} <br>
+                                Time: {{ tp.time }} <br>
+                                Price: RM {{ tp.price }} <br>
                             </p>
+                            <p hidden class="p-description">Pickup Point: <span id="pickup-p">{{ tp.pickup }}</span></p>
+                            <p hidden class="p-description"> Dropoff Point: <span id="dropoff-p">{{ tp.dropoff }}</span> </p>
+                            <p hidden class="p-description">Time: <span id="time-p">{{ tp.time }}</span></p>
+                            <p hidden class="p-description">Price: RM <span id="price-p">{{ tp.price }}</span></p>
+
                             <!-- <a href="#" class="btn btn-explore">Learn more</a> -->
-                            <button class="button is-large" style="background-color: #fb8f1d; color: #ffffff;">Book</button>
+                            <button onclick="func(this.id)" id="{{tp.transport_id}}" class="open-modal button is-large" style="background-color: #fb8f1d; color: #ffffff;">Book</button>
+                            
+                        
                         </div>
                     </div>
             </div>
@@ -131,6 +184,28 @@
 <!--End Hero -->
 
 
+<script type="text/javascript">
+    function func(id) {
+        var info = $("#"+id+" .full").html();
+        var name = $("#"+id+" #name-p").html();
+        var pickup = $("#"+id+" #pickup-p").html();
+        var dropoff = $("#"+id+" #dropoff-p").html();
+        var time = $("#"+id+" #time-p").html();
+        var price = $("#"+id+" #price-p").html();
+
+        // console.log(pickup, dropoff, time, price)
+
+        $('#info').html( info );
+        $('#name').val( name );
+        $('#pickup').val( pickup );
+        $('#dropoff').val( dropoff );
+        $('#time').val( time );
+        $('#price').val( price );
+        
+        document.getElementById('modal').style.display='block'
+    };
+    
+</script>
 
 
 <!--Footer-->
@@ -233,6 +308,7 @@
 <div class="arrow-up"><i><</i></div>
 
 
+<script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="/static/assets/js/main.js"></script>
 </body>
 </html>

@@ -8,13 +8,16 @@ module.exports = {
 			callback(results)
 		});
 	},
-	updateinfo:function(user,table,callback){
+	getbyid:function(id,tablename,callback){
+		var sql = "select * from " +tablename+" where user_id = "+id+";"
+		db.getResults(sql,function(results){
+			callback(results)
+		});
+	},
+	updateinfo:function(id,table,bstatus,callback){
 
-		var sql="";
-		if(table=='user_info') sql = "update user_info set user_name='"+user.user_name+"' , email='"+user.user_email+"' , password='"+user.user_password+"' , phone='"+user.user_phone+"' where user_id='"+user.user_id+"';";
-		else if(table=='booking_info') sql= "update booking_info set booking_date='"+user.booking_date+"' , booking_status='"+user.booking_status+"' where booking_id='"+user.booking_id+"';";
-		else if(table=='hotel_info') sql = "update hotel_info set hotel_name='"+user.hotel_name+"' , hotel_address='"+user.hotel_address+"' , hotel_price='"+user.hotel_price+"' , hotel_description='"+user.hotel_description+"' , hotel_phone='"+user.hotel_phone+"' where hotel_id='"+user.hotel_id+"';";
-		else if(table=='transport_info') sql = "update transport_info set transport_type='"+user.transport_type+"' , transport_phone='"+user.transport_phone+"' , driver_license='"+user.driver_license+"' where transport_id='"+user.transport_id+"';";
+		var sql="update "+table+" set booking_status = '"+bstatus+"' where booking_id = "+id+";"
+		console.log(sql)
 		db.execute(sql,function(status){
 			callback(status)
 		});		
@@ -49,5 +52,31 @@ module.exports = {
 				callback(results)
 			})
 		}
+	},
+	transportsearch:function(pickup,dropoff,type,callback){
+		var flag=0
+		var sql = "select * from transport_info "
+		if(pickup!='' || dropoff!='' || type!='') sql+= "where "
+		if(pickup!='')
+		{
+			sql+= "pickup = '"+pickup+"' "
+			flag++
+		}
+		if(dropoff!='')
+		{
+			if(flag>0) sql+="and "
+			sql+="dropoff= '"+dropoff+"' "
+			flag++
+		}
+		if(type!='')
+		{
+			if(flag>0) sql+="and "
+			sql+="transport_type= '"+type+"' "
+			flag++
+		}
+		console.log(sql)
+		db.getResults(sql,(results)=>{
+			callback(results)
+		})
 	}
 }

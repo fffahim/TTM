@@ -31,7 +31,7 @@ router.post('/',[
 			{
 				res.cookie('username',user.user_name);
 				if(user.user_name=='admin') res.redirect('/admin')
-				else res.redirect('/customer')
+				else res.redirect('/')
 			}
 			else
 			{

@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="/static/assets/img/logo.svg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="/static/assets/css/main.css">
+    <script src="https://code.jquery.com/jquery.min.js"></script>
 </head>
 <body>
 
@@ -42,7 +43,7 @@
                 </div>
                 {% else %}
                 <div class="nav-form">
-                    <a href="/mybookings" class="btn btn-login">My Bookings</a>
+                    <a href="/booking" class="btn btn-login">My Bookings</a>
                     <a href="/logout" class="btn btn-register">Logout</a>
                 </div>
                 {% endif %}
@@ -59,89 +60,50 @@
 </header>
 <!--End Header-->
 
+<!-- modal start -->
+<div class="modal" id="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <!-- Any other Bulma elements you want -->
+      <div class="box" style="margin-top: 20%;">
+        <h1 class="title">Booking Summary</h1>
+        <hr>
+        
+        <h4 class="title is-4">Please press confirm for booking</h4>
+        
+          <!-- <h3 class="title is-3">Total Price: RM </h3> -->
+        
+        <hr>
+        <form action="/booking/hotel" method="POST">
+            <span name="info" id="info"></span>
+            <input type="hidden" name="name" id="name">
+            <input type="hidden" name="location" id="location">
+            <input type="hidden" name="phone" id="phone">
+            <input type="hidden" name="price" id="price">
+            <label for="booking_date">Booking Date:</label>
+            <input type="date" id="booking_date" name="booking_date">
+
+            <br>
+            
+            <button type="submit" class="button is-success">Confirm</button><br>
+        </form>
+        <button class="button is-link is-light" onclick="document.getElementById('modal').style.display='none'">Cancel</button>
+                
+    </div>
+        
+    <button onclick="document.getElementById('modal').style.display='none'" class="modal-close is-large" aria-label="close"></button>
+
+
+      </div>
+    </div>
+    <button onclick="document.getElementById('modal').style.display='none'" class="modal-close is-large" aria-label="close"></button>
+  </div>
+<!-- modal end -->
+
 <!-- Hero -->
 <section class="section">
     <div class="container">
         <div class="hero-content">
-            <!-- <div class="hero-form">
-                <h1 class="hero-title">Explore and Travel</h1>
-                <h4 class="hero-subtitle">Holiday finder</h4>
-                <form >
-                    <div class="form-groups">
-                        <div class="form-control">
-                            <div class="custom-select-wrapper">
-                                <div class="custom-select">
-                                    <div class="custom-select__trigger"><span>Location</span>
-                                        <div class="arrow"></div>
-                                    </div>
-                                    <div class="custom-options">
-                                        <span class="custom-option selected" data-value="">Location</span>
-                                        <span class="custom-option" data-value="paris">Paris</span>
-                                        <span class="custom-option" data-value="istanbul">Istanbul</span>
-                                        <span class="custom-option" data-value="newyork">Newyork</span>
-                                        <span class="custom-option" data-value="london">London</span>
-                                        <span class="custom-option" data-value="tokyo">Tokyo</span>
-                                        <span class="custom-option" data-value="venice">Venice</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <div class="custom-select-wrapper">
-                                <div class="custom-select">
-                                    <div class="custom-select__trigger"><span>Activity</span>
-                                        <div class="arrow"></div>
-                                    </div>
-                                    <div class="custom-options">
-                                        <span class="custom-option selected" data-value="">Activity</span>
-                                        <span class="custom-option" data-value="Cycling + Mountain Biking">Cycling + Mountain Biking</span>
-                                        <span class="custom-option" data-value="Camping">Camping</span>
-                                        <span class="custom-option" data-value="Food Tourism">Food Tourism</span>
-                                        <span class="custom-option" data-value="Motorcycle Touring">Motorcycle Touring</span>
-                                        <span class="custom-option" data-value="Road Touring">Road Touring</span>
-                                        <span class="custom-option" data-value="Dirt Bike Touring">Dirt Bike Touring</span>
-                                        <span class="custom-option" data-value="Wine tourism">Wine tourism</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <div class="custom-select-wrapper">
-                                <div class="custom-select">
-                                    <div class="custom-select__trigger"><span>Grade</span>
-                                        <div class="arrow"></div>
-                                    </div>
-                                    <div class="custom-options">
-                                        <span class="custom-option selected" data-value="Grade">Grade</span>
-                                        <span class="custom-option" data-value="Tourist">Tourist</span>
-                                        <span class="custom-option" data-value="Superior Tourist">Superior Tourist	</span>
-                                        <span class="custom-option" data-value="Standard">Standard	</span>
-                                        <span class="custom-option" data-value="Superior Standard">Superior Standard	</span>
-                                        <span class="custom-option" data-value="Comfort">Comfort</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-control">
-                            <div class="date-picker">
-                                <div class="selected-date"></div>
-                                <div class="dates">
-                                    <div class="month">
-                                        <div class="arrows prev-mth">&lt;</div>
-                                        <div class="mth"></div>
-                                        <div class="arrows next-mth">&gt;</div>
-                                    </div>
-                                    <div class="days"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-explore">Explore</button>
-                </form>
-            </div>
-            <div class="hero-img">
-                <img src="/static/assets/img/hero.jpg" alt="">
-            </div> -->
             <p class="title is-1">Hotels</p>
         </div>
         <br>
@@ -224,21 +186,27 @@
         <hr>
         {% for hotel in hotels %}
         
-            <div class="box">
+            <div class="box" id="{{hotel.hotel_id}}">
                     <div class="section-content">
                         <div class="">
                             <img style="max-width: 80%; width: 350px;" src="{{ hotel.hotel_photo }}" alt="">
                         </div>
                         <div class="">
-                            <h3 class="section-title">{{ hotel.hotel_name }}</h3>
+                            <h3  class=" name-p section-title">{{ hotel.hotel_name }}</h3>
                             <hr>
-                            <p class="p-description">
+                            <p  class="full p-description">
                                 Location: {{ hotel.hotel_address }} <br>
                                 Phone: {{ hotel.hotel_phone }} <br>
                                 Price Per Night: RM {{ hotel.hotel_price }} <br>
                             </p>
+
+                            
+                            <p hidden  class="p-description-">Location: <span id="location-p">{{ hotel.hotel_address }}</span></p>
+                            <p hidden  class="p-description"> Phone: <span id="phone-p">{{ hotel.hotel_phone }}</span> </p>
+                            <p hidden  class="p-description">Price: RM <span id="price-p">{{ hotel.hotel_price }}</span></p>
+
                             <!-- <a href="#" class="btn btn-explore">Learn more</a> -->
-                            <button class="button is-large" style="background-color: #fb8f1d; color: #ffffff;">Book</button>
+                            <button onclick="func(this.id)" id="{{hotel.hotel_id}}" class="open-modal button is-large" style="background-color: #fb8f1d; color: #ffffff;">Book</button>
                         </div>
                     </div>
             </div>
@@ -248,8 +216,46 @@
     </div>
 </section>
 <!--End Hero -->
+<script type="text/javascript">
+function func(id){
+    // var str = "#"+id+" #location-p";
+    // console.log($(str).html())
+    var info = $("#"+id+" .full").html();
+    console.log(info)
+    var name = $("#"+id+" .name-p").html();
+    var location = $("#"+id+" #location-p").html();
+    var phone = $("#"+id+" #phone-p").html();
+    var price = $("#"+id+" #price-p").html();
 
+    $('#info').html( info );
+    $('#name').val( name );
+    $('#location').val( location );
+    $('#phone').val( phone );
+    $('#price').val( price );
+        
+    document.getElementById('modal').style.display='block'
+}
+</script>
+<!-- <script type="text/javascript">
+    $(document).on("click", ".open-modal", function () {
+        var info = $(".p-description").html();
+        var name = $("#name-p").html();
+        var location = $("#location-p").html();
+        var phone = $("#phone-p").html();
+        var price = $("#price-p").html();
 
+        // console.log(pickup, dropoff, time, price)
+
+        $('#info').html( info );
+        $('#name').val( name );
+        $('#location').val( location );
+        $('#phone').val( phone );
+        $('#price').val( price );
+        
+        document.getElementById('modal').style.display='block'
+    });
+    
+</script> -->
 
 
 <!--Footer-->

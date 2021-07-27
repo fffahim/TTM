@@ -29,9 +29,10 @@ router.post('/',[
 		userModel.insert(user,'user_info',(status)=>{
 			if(status)
 			{
-				res.cookie('username',user.user_name);
+				// res.cookie('username',user.user_name);
+				// req.session.user_name = req.body.username;
 				if(user.user_name=='admin') res.redirect('/admin')
-				else res.redirect('/')
+				else res.redirect('/login')
 			}
 			else
 			{

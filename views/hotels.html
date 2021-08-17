@@ -80,9 +80,11 @@
             <input type="hidden" name="location" id="location">
             <input type="hidden" name="phone" id="phone">
             <input type="hidden" name="price" id="price">
-            <label for="booking_date">Booking Date:</label>
-            <input type="date" id="booking_date" name="booking_date">
-
+            <input type="hidden" name="beds" id="beds">
+            <label for="checkin_date">Check In Date:</label>
+            <input type="date" id="checkin_date" name="checkin_date">
+            <label for="checkout_date">Check Out Date:</label>
+            <input type="date" id="checkout_date" name="checkout_date">
             <br>
             
             <button type="submit" class="button is-success">Confirm</button><br>
@@ -147,6 +149,18 @@
                                 
                         </select>
                     </div>
+
+                    &nbsp;&nbsp;&nbsp;
+
+                    <div class="select is-large">
+                      <select name="no_beds">
+                        <option value="">Select Bed</option>
+                        <option  value="Single">Single</option>
+                          <option  value="Double">Double</option>
+                          <option  value="Triple">Triple</option>
+                      </select>
+                  </div>
+
                 </div>
 
                 <!-- <div class="form-control">
@@ -198,12 +212,15 @@
                                 Location: {{ hotel.hotel_address }} <br>
                                 Phone: {{ hotel.hotel_phone }} <br>
                                 Price Per Night: RM {{ hotel.hotel_price }} <br>
+                                Bed Type: {{ hotel.no_beds }} <br>
                             </p>
 
                             
                             <p hidden  class="p-description-">Location: <span id="location-p">{{ hotel.hotel_address }}</span></p>
                             <p hidden  class="p-description"> Phone: <span id="phone-p">{{ hotel.hotel_phone }}</span> </p>
                             <p hidden  class="p-description">Price: RM <span id="price-p">{{ hotel.hotel_price }}</span></p>
+                            <p hidden  class="p-description">Bed Type: <span id="bed-p">{{ hotel.no_beds }}</span></p>
+
 
                             <!-- <a href="#" class="btn btn-explore">Learn more</a> -->
                             <button onclick="func(this.id)" id="{{hotel.hotel_id}}" class="open-modal button is-large" style="background-color: #fb8f1d; color: #ffffff;">Book</button>
@@ -226,12 +243,14 @@ function func(id){
     var location = $("#"+id+" #location-p").html();
     var phone = $("#"+id+" #phone-p").html();
     var price = $("#"+id+" #price-p").html();
+    var beds = $("#"+id+" #bed-p").html();
 
     $('#info').html( info );
     $('#name').val( name );
     $('#location').val( location );
     $('#phone').val( phone );
     $('#price').val( price );
+    $('#beds').val( beds );
         
     document.getElementById('modal').style.display='block'
 }

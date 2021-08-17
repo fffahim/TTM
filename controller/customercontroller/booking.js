@@ -37,6 +37,17 @@ router.get('/',(req,res)=>{
 	}
 	else res.redirect('/login')
 })
+router.get('/:id/:table',(req,res)=>{
+	if(req.session.user_id)
+	{
+		var id = req.params.id;
+		var table = req.params.table;
+		userModel.delete(id,table,(results)=>{
+			res.redirect('/booking');
+		})
+	}
+	else res.redirect('/login')
+})
 router.post('/hotel',(req,res)=>{
 
 	if(req.session.user_id)
@@ -45,7 +56,8 @@ router.post('/hotel',(req,res)=>{
 			user_id : req.session.user_id,
 			user_phone : req.session.user_phone,
 			user_email : req.session.user_email,
-			date : req.body.booking_date,
+			checkin_date : req.body.checkin_date,
+			checkout_date : req.body.checkout_date,
 			name : req.body.name,
 			location : req.body.location,
 			phone : req.body.phone,

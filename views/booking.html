@@ -110,7 +110,8 @@
             <th>Name</th>
             <th>Location</th>
             <th>Hotel Phone</th>
-            <th>Date</th>
+            <th>Check In</th>
+            <th>Check Out</th>
             <th>Amount</th>
             <th>Status</th>
             <th>Action</th>
@@ -125,7 +126,8 @@
                 <td>{{ item.hotel_name }}</td>
                 <td>{{ item.location }}</td>
                 <td>{{ item.phone }}</td>
-                <td>{{ item.date }}</td>
+                <td>{{ item.checkin_date }}</td>
+                <td>{{ item.checkout_date }}</td>
                 <td>RM {{ item.price }}</td>
                 <td>{{ item.booking_status }}</td>
                 <td>
@@ -135,7 +137,7 @@
                     {% else %}
                     <a class="button is-success  is-small" href="/payment/{{item.price}}/{{item.booking_id}}/hotel_bookings"> Pay </a>
                     {% endif %}
-                    <a class="button is-danger  is-small" href="/booking"> Cancel </a>
+                    <a class="button is-danger  is-small" href="/booking/{{item.booking_id}}/hotel_bookings"> Cancel </a>
                   </div>
                 </td>
               </tr>
@@ -184,7 +186,7 @@
                     {% else %}
                       <a class="button is-success  is-small" href="/payment/{{item.price}}/{{item.booking_id}}/transport_bookings"> Pay </a>
                     {% endif %}
-                    <a class="button is-danger  is-small" href="/booking"> Cancel </a>
+                    <a class="button is-danger  is-small" href="/booking/{{item.booking_id}}/transport_bookings"> Cancel </a>
                   </div>
                 </td>
               </tr>

@@ -164,6 +164,9 @@
             <th>Time</th>
             <th>Amount</th>
             <th>Status</th>
+            <th>Booking Date</th>
+            <th>Direction</th>
+            <th>Persons</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -179,6 +182,9 @@
                 <td>{{ item.time }}</td>
                 <td>RM {{ item.price }}</td>
                 <td>{{ item.booking_status }}</td>
+                <td>{{ item.booking_date }}</td>
+                <td>{{ item.direction }}</td>
+                <td>{{ item.no_persons }}</td>
                 <td>
                   <div class="buttons">
                     {% if item.booking_status == 'pending' %}

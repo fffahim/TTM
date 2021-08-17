@@ -35,7 +35,8 @@ router.post('/',(req,res)=>{
 	var pickup = req.body.pickup
 	var dropoff = req.body.dropoff
 	var type = req.body.type
-	adminModel.transportsearch(pickup,dropoff,type,(results)=>{
+	var direction = req.body.direction
+	adminModel.transportsearch(pickup,dropoff,type,direction,(results)=>{
 		res.render('transport',{'transports':results, 'pickup':pickuparr , 'dropoff':dropoffarr})
 	})
 })

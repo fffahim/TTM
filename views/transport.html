@@ -86,6 +86,11 @@
             <input type="hidden" name="dropoff" id="dropoff">
             <input type="hidden"  name="time" id="time">
             <input type="hidden" name="price" id="price">
+            <input type="hidden" name="direction" id="direction">
+            <label for="booking_date">Booking Date: </label>
+            <input type="date" id="booking_date" name="booking_date">
+            <label for="no_persons">Persons: </label>
+            <input  name="no_persons" id="no_persons">
 
             <br>
             
@@ -144,6 +149,19 @@
                                 
                         </select>
                     </div>
+
+                    &nbsp;&nbsp;&nbsp;
+
+                    <div class="select is-large">
+                      <select name="direction">
+                        <option value="">Direction</option>
+                        <option  value="Oneway">Oneway</option>
+                          <option  value="Twoway">Twoway</option>
+                          <!-- <option  value="350 to 400">RM 350 to RM 400</option>
+                          <option  value="400 to 999999999">Above RM 400</option> -->
+                              
+                      </select>
+                  </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-explore">Search</button>
@@ -165,11 +183,13 @@
                                 Dropoff Point: {{ tp.dropoff }} <br>
                                 Time: {{ tp.time }} <br>
                                 Price: RM {{ tp.price }} <br>
+                                Direction: {{ tp.direction }} <br>
                             </p>
                             <p hidden class="p-description">Pickup Point: <span id="pickup-p">{{ tp.pickup }}</span></p>
                             <p hidden class="p-description"> Dropoff Point: <span id="dropoff-p">{{ tp.dropoff }}</span> </p>
                             <p hidden class="p-description">Time: <span id="time-p">{{ tp.time }}</span></p>
                             <p hidden class="p-description">Price: RM <span id="price-p">{{ tp.price }}</span></p>
+                            <p hidden class="p-description">Direction: <span id="direction-p">{{ tp.direction }}</span></p>
 
                             <!-- <a href="#" class="btn btn-explore">Learn more</a> -->
                             <button onclick="func(this.id)" id="{{tp.transport_id}}" class="open-modal button is-large" style="background-color: #fb8f1d; color: #ffffff;">Book</button>
@@ -192,7 +212,7 @@
         var dropoff = $("#"+id+" #dropoff-p").html();
         var time = $("#"+id+" #time-p").html();
         var price = $("#"+id+" #price-p").html();
-
+        var direction = $("#"+id+" #direction-p").html();
         // console.log(pickup, dropoff, time, price)
 
         $('#info').html( info );
@@ -201,7 +221,7 @@
         $('#dropoff').val( dropoff );
         $('#time').val( time );
         $('#price').val( price );
-        
+        $('#direction').val( direction );
         document.getElementById('modal').style.display='block'
     };
     

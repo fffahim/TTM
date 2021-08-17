@@ -22,16 +22,17 @@ router.get('/',(req,res)=>{
 })
 
 router.post('/',(req,res)=>{
-	var region = req.body.hotel_name
+	var region = req.body.hotel_region
 	var price1=0
 	var price2=0
 	var pricearray = req.body.hotel_price.split(" to ")
+	var no_beds = req.body.no_beds
 	if(req.body.hotel_price!='')
 	{
 		price1=parseInt(pricearray[0])
 		price2= parseInt(pricearray[1])
 	}
-	adminModel.hotelsearch(region,price1,price2,(results)=>{
+	adminModel.hotelsearch(region,price1,price2,no_beds,(results)=>{
 		res.render('hotels',{'hotels':results, 'regions':regions})
 	})
 })

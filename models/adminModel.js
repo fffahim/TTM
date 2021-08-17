@@ -35,11 +35,11 @@ module.exports = {
 			callback(status)
 		});
 	},
-	hotelsearch:function(region,price1,price2,callback){
+	hotelsearch:function(region,price1,price2,no_beds,callback){
 		
 		if(region=='')
 		{
-			var sql = " select * from hotel_info where hotel_price >= "+price1+" and hotel_price <= "+price2+";"
+			var sql = " select * from hotel_info where hotel_price >= "+price1+" and hotel_price <= "+price2+" and no_beds = '"+no_beds+"';"
 			console.log(sql);
 			db.getResults(sql,function(results){
 				callback(results)
@@ -47,16 +47,16 @@ module.exports = {
 		}
 		else
 		{
-			var sql = " select * from hotel_info where hotel_region = '"+region+"' and hotel_price >= "+price1+" and hotel_price <= "+price2+";"
+			var sql = " select * from hotel_info where hotel_region = '"+region+"' and hotel_price >= "+price1+" and hotel_price <= "+price2+" and no_beds = '"+no_beds+"';"
 			db.getResults(sql,function(results){
 				callback(results)
 			})
 		}
 	},
-	transportsearch:function(pickup,dropoff,type,callback){
+	transportsearch:function(pickup,dropoff,type,direction,callback){
 		var flag=0
 		var sql = "select * from transport_info "
-		if(pickup!='' || dropoff!='' || type!='') sql+= "where "
+		if(pickup!='' || dropoff!='' || type!='' || direction!='') sql+= "where "
 		if(pickup!='')
 		{
 			sql+= "pickup = '"+pickup+"' "
@@ -72,6 +72,12 @@ module.exports = {
 		{
 			if(flag>0) sql+="and "
 			sql+="transport_type= '"+type+"' "
+			flag++
+		}
+		if(direction!='')
+		{
+			if(flag>0) sql+="and "
+			sql+="direction = '"+direction+"' "
 			flag++
 		}
 		console.log(sql)

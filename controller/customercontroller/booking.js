@@ -14,7 +14,10 @@ router.post('/transport',(req,res)=>{
 			pickup : req.body.pickup,
 			dropoff : req.body.dropoff,
 			price : req.body.price,
-			time : req.body.time
+			time : req.body.time,
+			direction : req.body.direction,
+			booking_date : req.body.booking_date,
+			no_persons : req.body.no_persons
 		}
 		userModel.insert(transport_book,'transport_bookings',(results)=>{
 			console.log(results)

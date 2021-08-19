@@ -48,3 +48,73 @@ app.use('/', home);
 app.listen(3000, (error)=>{
 	console.log('express server started at 3000...');
 });
+
+
+app.get('/send', (req, res) => {
+  const output = `
+    <p>You account has been created successfully</p>
+    <p> Click this link to verify and login: http://localhost:3000/login</p>
+  `;
+
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    requireTLS: true,
+    auth: {
+        user: 'morey.travel@gmail.com', // generated ethereal user
+        pass: 'morey.1234'  // generated ethereal password
+    },
+    // tls:{
+    //   rejectUnauthorized:false
+    // }
+  });
+
+  // setup email data with unicode symbols
+  let mailOptions = {
+      from: '"Morey Travel" <morey.travel@gmail.com>', // sender address
+      to: 'belal.mahmud099@gmail.com', // list of receivers
+      subject: 'Node Contact Request', // Subject line
+      text: '', // plain text body
+      html: output // html body
+  };
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          return console.log(error);
+      }
+      console.log('Message sent: %s', info.messageId);   
+      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+      res.render('contact', {msg:'Email has been sent'});
+  });
+
+//   let transporter = nodemailer.createTransport({
+//     host: 'smtp.gmail.com',
+//     port: 587,
+//     secure: false,
+//     requireTLS: true,
+//     auth: {
+//         user: 'morey.travel@gmail.com',
+//         pass: 'morey.1234'
+//     }
+// });
+
+// let mailOptions = {
+//     from: 'morey.travel@gmail.com',
+//     to: 'belal.mahmud099@gmail.com',
+//     subject: 'Test',
+//     text: 'Hello World!'
+// };
+
+// transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//         return console.log(error.message);
+//     }
+//     console.log('success');
+// });
+  });
+
+

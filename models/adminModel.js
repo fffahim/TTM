@@ -14,6 +14,12 @@ module.exports = {
 			callback(results)
 		});
 	},
+	getbybookingid:function(id,tablename,callback){
+		var sql = "select * from " +tablename+" where booking_id = "+id+";"
+		db.getResults(sql,function(results){
+			callback(results)
+		});
+	},
 	updateinfo:function(id,table,bstatus,callback){
 
 		var sql="update "+table+" set booking_status = '"+bstatus+"' where booking_id = "+id+";"

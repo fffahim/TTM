@@ -19,6 +19,14 @@ router.post('/transport',(req,res)=>{
 			booking_date : req.body.booking_date,
 			no_persons : req.body.no_persons
 		}
+		// req.session.pickup = "test";
+		// req.session.dropoff = req.body.dropoff;
+		// req.session.transport_price = req.body.price;
+		// req.session.transport_time = req.body.time;
+		// req.session.transport_direction = req.body.direction;
+		// req.session.transport_bookingdate = req.body.booking_date;
+		// req.session.transport_nopersons = req.body.no_persons;
+
 		userModel.insert(transport_book,'transport_bookings',(results)=>{
 			console.log(results)
 			res.redirect('/booking')

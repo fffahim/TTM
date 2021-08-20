@@ -64,15 +64,32 @@ router.post('/:price/:booking_id/:table',(req,res)=>{
                 }
                 else
                 {
+                  const mailbody = `
                     
-                    const mailbody = `
                         <p>Your Hotel booking details </p>
                         <hr>
-                        <p>Checkin Date: ${results[0]['checkin_date']}</p>
-                        <p>Checkout Date: ${results[0]['checkout_date']}</p>
-                        <p>Location: ${results[0]['location']}</p>
-                        <p>Phone: ${results[0]['phone']}</p>
-                        <p>Price: ${results[0]['price']}</p>
+                        <table style='border:1px solid black;' >
+                        <tr>
+                          <td>Checkin Date:</td>
+                          <td>${results[0]['checkin_date']}</td>
+                        </tr>
+                        <tr>
+                          <td>Checkout Date:</td>
+                          <td>${results[0]['checkout_date']}</td>
+                        </tr>
+                        <tr>
+                          <td>Location:</td>
+                          <td>${results[0]['location']} RM</td>
+                        </tr>
+                        <tr>
+                          <td>Phone:</td>
+                          <td>${results[0]['phone']}</td>
+                        </tr>
+                        <tr>
+                          <td>Price:</td>
+                          <td>${results[0]['price']}</td>
+                        </tr>
+                      </table>
                         <p>Thanks,</p>
                         <p>Morey Travel</p>
                     `;
